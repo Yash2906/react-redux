@@ -15,6 +15,7 @@ class PostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -65,7 +66,11 @@ class PostForm extends Component {
 }
 
 PostForm.propTypes = {
-  createPost: PropTypes.func.isRequired
+  createPost: PropTypes.func.isRequired,
 };
 
-export default connect(null, createPost)(PostForm);
+const mapStateToProps = state => ({
+  posts: state.posts.items,
+});
+
+export default connect(mapStateToProps, { createPost })(PostForm);
